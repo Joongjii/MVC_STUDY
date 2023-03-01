@@ -1,0 +1,147 @@
+스포츠 빅데이터 분석 5주차 - 2 (2021-09-29)
+  
+###################################
+# 실전 dplyr
+
+# 프로배구의 팀별 기록
+
+pacman::p_load(tidyverse)
+
+'/home/phoenix/SportsData/kovo_team.csv' %>% 
+  read.csv(fileEncoding = 'euc-kr',encoding = 'utf-8') %>% 
+  as_tibble() -> kovo_team
+  
+head(kovo_team, 20)
+
+kovo_team %>%
+  distinct(팀) %>%
+  arrange(팀) %>% 
+  pull()
+
+kovo_team %>%
+  mutate(
+    팀 = case_when(
+      남녀부 == '남' & 팀 == '현대' ~ '현대캐피탈',
+      남녀부 == '여' & 팀 == '현대' ~ '현대건설',
+      TRUE ~  as.character(팀)),
+    팀_이름 = 팀,
+    팀 = fct_collapse(
+      팀,
+      대한항공 = 'KAL',
+      삼성화재 = '삼성',
+      상무 = c('상무', '상무신협', '신협상무'),
+      우리카드 = c('드림식스', '우리카드', '우리캐피탈'),
+      한국전력 = c('한국전력', '한전', 'KEPCO', 'KEPCO45'),
+      KB손해보험 = c('KB손보', 'LG', 'LIG', 'LIG손보'),
+      OK금융그룹 = c('러시앤캐시', 'OK저축은행'),
+      GS칼텍스 = 'GS',
+      IBK기업은행 = 'IBK',
+      KGC인삼공사 = c('인삼공사', 'KGC인삼공사', 'KT&G'),
+      한국도로공사 = c('도공', '도로공사'),
+      흥국생명 = '흥국'
+    )
+  ) -> kovo_team
+
+
+kovo_team %>% 
+  distinct(시즌) %>% 
+  pull()
+
+'volleyball' %>%
+  str_sub(1)
+
+'volleyball' %>%
+  str_sub(2)
+
+'volleyball' %>%
+  str_sub(1, 2)
+
+'volleyball' %>%
+  str_sub(-4)
+
+kovo_team %>% 
+  mutate(시즌_이름=시즌,
+              시즌=시즌 %>% str_sub(-4)) -> kovo_team
+
+kovo_team
+
+kovo_team %>% 
+  select(시즌, 팀, contains('공격종합'))
+
+kovo_team %>% 
+  select(-contains('_'))
+
+kovo_team %>% 
+  select(시즌, 팀, starts_with('세트'))
+
+kovo_team %>% 
+  select(시즌, 팀, ends_with('세트당_평균'))
+
+tribble(
+  ~x, ~y,
+  1, 2,
+) %>% 
+  rename(z = x)
+
+kovo_team %>%
+  select(시즌,  팀, ends_with('세트당_평균')) %>%
+  rename(블로킹 =  블로킹_세트당_평균,
+            서브 =  서브_세트당_평균)
+
+str_replace('블로킹_세트당_평균', '_세트당_평균', '')
+
+kovo_team %>% 
+  select(시즌, 팀, ends_with('세트당_평균')) %>% 
+  rename_with(~str_replace(., '_세트당_평균', ''))
+
+kovo_team %>%
+  group_by(시즌, 남녀부) %>%
+  summarise(리시브_효율 = (sum(리시브_정확) - sum(리시브_실패)) / sum(리시브_시도),
+            .groups = 'drop') %>%
+  ggplot(aes(x = 시즌, y = 리시브_효율, group = 남녀부, color = 남녀부)) +
+  geom_line()
+
+kovo_team %>%
+  group_by(남녀부, 시즌) %>%
+  summarise(리시브_효율 = (sum(리시브_정확) - sum(리시브_실패)) / sum(리시브_시도)) %>%
+  mutate(전_시즌 = lag(리시브_효율))
+
+kovo_team %>%
+  group_by(남녀부, 시즌) %>%
+  summarise(리시브_효율 = (sum(리시브_정확) - sum(리시브_실패)) / sum(리시브_시도)) %>%
+  mutate(다음_시즌 = lead(리시브_효율)) %>%
+  print(n = 17)
+
+kovo_team %>%
+  group_by(남녀부, 시즌) %>%
+  summarise(리시브_효율 = (sum(리시브_정확) - sum(리시브_실패)) / sum(리시브_시도)) %>% 
+  mutate(차이 = 리시브_효율 - lag(리시브_효율))
+
+kovo_team %>%
+  group_by(남녀부,  시즌) %>%
+  summarise(리시브_효율  = (sum(리시브_정확) - sum(리시브_실패)) / sum(리시브_시도),
+                  .groups = 'drop') %>%
+  mutate(차이 = 리시브_효율 -lag(리시브_효율)) %>%
+  summarise(차이_평균 = mean(차이))
+
+kovo_team %>%
+  group_by(남녀부, 시즌) %>%
+  summarise(리시브_효율 = (sum(리시브_정확) - sum(리시브_실패)) / sum(리시브_시도),
+            .groups = 'drop') %>%
+  mutate(차이 = 리시브_효율 -lag(리시브_효율)) %>%
+  summarise(차이_평균 = mean(차이, na.rm = TRUE))
+
+kovo_team %>%
+  group_by(남녀부, 시즌) %>%
+  summarise(리시브_효율 = (sum(리시브_정확) - sum(리시브_실패)) / sum(리시브_시도),
+                  .groups = 'drop') %>%
+  mutate(차이 = 리시브_효율 -lag(리시브_효율)) %>%
+  drop_na() %>% 
+  summarise(차이_평균 = mean(차이))
+
+kovo_team %>%
+  group_by(남녀부, 시즌) %>%
+  summarise(리시브_효율 = (sum(리시브_정확) - sum(리시브_실패)) / sum(리시브_시도), .groups = 'drop') %>% 
+  mutate(차이 = 리시브_효율 -lag(리시브_효율)) %>%
+  drop_na() %>% 
+  arrange(차이)

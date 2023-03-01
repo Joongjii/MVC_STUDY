@@ -1,0 +1,23 @@
+package com.fastcampus.ch2;
+
+import java.util.Calendar;
+
+public class YoilTeller { 
+
+	public static void main(String[] args) {
+		//1. 입력 값
+		String year = args[0];
+		String month = args[1];
+		String day = args[2];
+		
+		int y = Integer.parseInt(year);
+		int m = Integer.parseInt(month);
+		int d = Integer.parseInt(day);
+		
+		// 2. 작업
+		Calendar cal = Calendar.getInstance();
+		System.out.println(cal);
+		
+	}
+
+}

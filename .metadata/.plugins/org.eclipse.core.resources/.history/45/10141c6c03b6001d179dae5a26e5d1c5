@@ -1,0 +1,102 @@
+pacman::p_load(tidyverse, lubridate)
+
+'fifa_ranking.csv' %>% 
+  read.csv() %>% 
+  as_tibble() -> fifa_ranking
+
+'soccer_matches_results_in_progress.csv' %>% 
+  read.csv() %>% 
+  as_tibble() -> results_in_progess
+
+fifa_ranking %>%
+  group_by(country_full) %>%
+  mutate(previous_rank = lag(rank))
+
+fifa_ranking %>%
+  group_by(country_full) %>%
+  mutate(
+    previous_rank = lag(rank),
+    rank_date = ymd(rank_date),
+    floor_date = floor_date(rank_date, unit = 'month')
+  )
+
+fifa_ranking %>%
+  group_by(country_full) %>%
+  mutate(
+    previous_rank = lag(rank),
+    rank_date = ymd(rank_date),
+    floor_date = floor_date(rank_date, unit = 'month')
+  ) -> fifa_ranking_to_join
+
+results_in_progess %>%
+  arrange(team, date) %>%
+  mutate(date = ymd(date),
+         floor_date = floor_date(date, unit = 'month'))
+
+results_in_progess %>%
+  arrange(team, date) %>%
+  mutate(date = ymd(date),
+         floor_date = floor_date(date, unit = 'month')) %>%
+  left_join(fifa_ranking_to_join,
+            by = c('team_abrv' = 'country_abrv', 'floor_date')) %>%
+  rename(team_rank = rank, team_previous_rank = previous_rank)
+
+results_in_progess %>%
+  arrange(team, date) %>%
+  mutate(date = ymd(date),
+         floor_date = floor_date(date, unit = 'month')) %>%
+  left_join(fifa_ranking_to_join,
+            by = c('team_abrv' = 'country_abrv', 'floor_date')) %>%
+  rename(team_rank = rank, team_previous_rank = previous_rank) %>%
+  left_join(fifa_ranking_to_join,
+            by = c('opponent_abrv' = 'country_abrv', 'floor_date', 'rank_date')) %>%
+  rename(opponent_rank = rank, opponent_previous_rank = previous_rank)
+
+(ymd(201231) - ymd(210101)) / ddays(1)
+
+results_in_progess %>%
+  arrange(team, date) %>%
+  mutate(date = ymd(date),
+         floor_date = floor_date(date, unit = 'month')) %>%
+  left_join(fifa_ranking_to_join,
+            by = c('team_abrv' = 'country_abrv', 'floor_date')) %>%
+  rename(team_rank = rank, team_previous_rank = previous_rank) %>%
+  left_join(fifa_ranking_to_join,
+            by = c('opponent_abrv' = 'country_abrv', 'floor_date', 'rank_date')) %>%
+  rename(opponent_rank = rank, opponent_previous_rank = previous_rank) %>%
+  select(date, rank_date, team:tournament, team_rank:last_col()) %>%
+  mutate(difference_date = (date - rank_date) / ddays(1),
+         team_rank = if_else(difference_date < 0, team_previous_rank, team_rank),
+         opponent_rank = if_else(difference_date < 0, opponent_previous_rank, opponent_rank)
+  )
+
+results_in_progess %>%
+  arrange(team, date) %>%
+  mutate(date = ymd(date),
+         floor_date = floor_date(date, unit = 'month')) %>%
+  left_join(fifa_ranking_to_join,
+            by = c('team_abrv' = 'country_abrv', 'floor_date')) %>%
+  rename(team_rank = rank, team_previous_rank = previous_rank) %>%
+  left_join(fifa_ranking_to_join,
+            by = c('opponent_abrv' = 'country_abrv', 'floor_date', 'rank_date')) %>%
+  rename(opponent_rank = rank, opponent_previous_rank = previous_rank) %>%
+  select(date, rank_date, team:tournament, team_rank:last_col()) %>%
+  mutate(difference_date = (date - rank_date) / ddays(1),
+         team_rank = ifelse(difference_date < 0, team_previous_rank, team_rank),
+         opponent_rank = ifelse(difference_date < 0, opponent_previous_rank, opponent_rank)) %>% 
+  select(date, team, opponent, team_score, opponent_score, tournament, team_rank, opponent_rank) -> results_final
+
+results_final %>%
+  mutate(
+    win = ifelse(team_score > opponent_score, 1, 0),
+    draw = ifelse(team_score == opponent_score, 1, 0),
+    lose = ifelse(team_score < opponent_score, 1, 0)
+  ) -> results_final
+
+results_final %>%
+  filter(team == 'South Korea', win == 1) %>%
+  arrange(opponent_rank)
+
+results_final %>%
+  filter(win==1, opponent_rank == 1) %>%
+  arrange(-team_rank)

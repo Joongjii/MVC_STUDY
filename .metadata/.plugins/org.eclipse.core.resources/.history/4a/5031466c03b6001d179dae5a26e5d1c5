@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DriverInfo>
+<ProductInfo>
+<Name>Dreamweaver 2020</Name>
+<SAPCode>DRWV</SAPCode>
+<CodexVersion>20.0</CodexVersion>
+<BaseVersion>20.0</BaseVersion>
+<Platform>win64</Platform>
+<EsdDirectory>./DRWV</EsdDirectory>
+<Dependencies>
+<Dependency>
+<SAPCode>CCXP</SAPCode>
+<BaseVersion>3.3.0</BaseVersion>
+<EsdDirectory>./CCXP</EsdDirectory>
+</Dependency>
+<Dependency>
+<SAPCode>LIBS</SAPCode>
+<BaseVersion>3.4.3</BaseVersion>
+<EsdDirectory>./LIBS</EsdDirectory>
+</Dependency>
+</Dependencies>
+<IsNonCCProduct>false</IsNonCCProduct>
+<IsNglEnabled>true</IsNglEnabled>
+<SupportedLanguages>
+<Language locale="cs_CZ">
+</Language>
+<Language locale="da_DK">
+</Language>
+<Language locale="de_DE">
+</Language>
+<Language locale="en_AE">
+</Language>
+<Language locale="en_GB">
+</Language>
+<Language locale="en_IL">
+</Language>
+<Language locale="en_US">
+</Language>
+<Language locale="en_XM">
+</Language>
+<Language locale="es_ES">
+</Language>
+<Language locale="es_MX">
+</Language>
+<Language locale="fi_FI">
+</Language>
+<Language locale="fr_CA">
+</Language>
+<Language locale="fr_FR">
+</Language>
+<Language locale="fr_MA">
+</Language>
+<Language locale="fr_XM">
+</Language>
+<Language locale="hu_HU">
+</Language>
+<Language locale="it_IT">
+</Language>
+<Language locale="ja_JP">
+</Language>
+<Language locale="ko_KR">
+</Language>
+<Language locale="nl_NL">
+</Language>
+<Language locale="pl_PL">
+</Language>
+<Language locale="pt_BR">
+</Language>
+<Language locale="ru_RU">
+</Language>
+<Language locale="sv_SE">
+</Language>
+<Language locale="tr_TR">
+</Language>
+<Language locale="uk_UA">
+</Language>
+<Language locale="zh_CN">
+</Language>
+<Language locale="zh_TW">
+</Language>
+</SupportedLanguages>
+<MinimumSupportedClientVersion>4.5.0.300</MinimumSupportedClientVersion>
+<HDBuilderVersion>3.0.43</HDBuilderVersion>
+</ProductInfo>
+</DriverInfo>

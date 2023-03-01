@@ -1,0 +1,42 @@
+#20173259 황현중 데이터과학융합스쿨 통계적사고와 이해 기말 프로젝트과제
+
+install.packages("ggplot2")
+install.packages("lattice")
+library(lattice)
+library(ggplot2)
+install.packages("plotly")
+library(plotly)
+
+setwd("C:/Users/guswn/Desktop")
+ins <- read.csv("insurance.csv")
+ins
+str(ins)
+nrow(ins)
+length(ins)
+summary(ins)
+
+attach(ins)
+View(ins)
+xyplot(charges~bmi, xlab = "BMI 지수", ylab = "보험료" )
+xyplot(charges~children, xlab = "자녀 수", ylab = "보험료" )
+xyplot(charges~age, xlab = "나이", ylab = "보험료" )
+
+fit1 <- lm(charges  ~ age, data = ins)
+summary(fit1)
+plot1 <- plot(charges ~ age, data = ins)
+abline(fit1, col = "darkred", lwd=2)
+
+
+fit2 <- lm(charges  ~ children, data = ins)
+summary(fit2)
+plot2 <- plot(charges ~ children, data = ins)
+abline(fit2, col = "darkred", lwd=2)
+
+fit3 <- lm(charges  ~ bmi, data = ins)
+summary(fit3)
+plot3 <- plot(charges ~ bmi, data = ins)
+abline(fit3, col = "darkred", lwd=2)
+
+#install.packages("dplyr")
+library(dplyr)
+

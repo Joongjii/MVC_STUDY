@@ -1,0 +1,17 @@
+package com.fastcampus.ch2;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+//1. 원격 호출 가능한 프로그램으로 등록
+@Controller
+public class Hello {
+	@RequestMapping("/hello")
+	// 2. URL과 메서드를 연결
+	public void main() {
+		System.out.println("Hello");
+	}
+}
+//객체 생성을 해야하는데 어떻게 인스턴스메서드인 main으로 실행이 가능할까?
+//이유는 톰캣 내부에서 객체를 생성한 후 메서드를 호출하기 때문이다
+//그러면 static도 가능한데 왜?? 인스턴스메서드로 실행을 선호할까?
