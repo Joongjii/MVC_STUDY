@@ -71,8 +71,8 @@
 		<item key="ToStringTemplateSelected" value="0"/>
 	</section>
 	<section name="DialogBounds_OverrideMethodDialog">
-		<item key="DIALOG_X_ORIGIN" value="544"/>
-		<item key="DIALOG_Y_ORIGIN" value="90"/>
+		<item key="DIALOG_X_ORIGIN" value="1114"/>
+		<item key="DIALOG_Y_ORIGIN" value="170"/>
 		<item key="DIALOG_WIDTH" value="619"/>
 		<item key="DIALOG_HEIGHT" value="626"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|10.5|0|WINDOWS|1|-14|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>

@@ -5,13 +5,23 @@ import java.util.Calendar;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class YoilTellerMVC { //http:localhost/ch2/getYoilMVC?year=2023&month=2&day=27
 	
+	@ExceptionHandler(Exception.class)
+	public String catcher(Exception ex) {
+		ex.printStackTrace();
+		return "yoilError";
+	}
+	
 	@RequestMapping("/getYoilMVC")
-	public String main(int year, int month, int day, Model model) throws IOException {
+	public String main( @RequestParam(required=true) int year, 
+			@RequestParam(required=true) int month, 
+			@RequestParam(required=true) int day, Model model) throws IOException {
 //	public void main(int year, int month, int day, Model model) throws IOException {
 		//매개 변수와 모델 선언
 		

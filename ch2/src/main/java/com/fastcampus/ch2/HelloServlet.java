@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/hello")
 public class HelloServlet extends HttpServlet{
+	// Alt shift O를 통해 init service destory 생성한다
+
 	
 	@Override
 		public void init() throws ServletException {
