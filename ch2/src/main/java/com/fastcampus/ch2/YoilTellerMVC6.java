@@ -21,8 +21,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class YoilTellerMVC6 { //http:localhost/ch2/getYoilMVC?year=2023&month=2&day=27
 	
 	@ExceptionHandler(Exception.class)
-	public String catcher(Exception ex,BindingResult result) {
-		System.out.println("result는"+result);
+	public String catcher(Exception ex, BindingResult result) {
+			System.out.println("result는"+result);
+			//콘솔을 보기 귀찮다면 FieldError를 이용해서 봐도 된다
+			FieldError error = result.getFieldError();
+			
+			System.out.println("코드는"+error.getCode());
+			System.out.println("필드는"+error.getField());
+			System.out.println("메세지"+error.getDefaultMessage());
 		ex.printStackTrace();
 		return "yoilError";
 	}
@@ -36,13 +42,7 @@ public class YoilTellerMVC6 { //http:localhost/ch2/getYoilMVC?year=2023&month=2&
 		//이 때는result가 컨트롤러까지 가지도 못했다 왜??--
 		//@MA를 생략하고 BR를 붙인뒤 에러 예외주석해제하고 day에 aa값을 넣으면 에러가 난다 
 		//예외 처리를 잡아준다 console을 보면 result 객체에 대한 에러가 나온다
-		System.out.println("result는"+result);
-		
-		//콘솔을 보기 귀찮다면 FieldError를 이용해서 봐도 된다
-		FieldError error = result.getFieldError();
-		System.out.println("codecode="+error.getCode());
-		System.out.println("fieldfield="+error.getField());
-		System.out.println("msgmsg="+error.getDefaultMessage());
+		//System.out.println("result는"+result);
 		
 			// 1. 유효성 검사
 			if(!isValid(date))

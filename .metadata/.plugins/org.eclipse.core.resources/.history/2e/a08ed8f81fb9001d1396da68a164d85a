@@ -1,0 +1,25 @@
+package com.fastcampus.ch2;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class RegisterController {
+	//@RequestMapping(value="/register/add", method={RequestMehtod.GET, RequestMethod.POST})
+	//배열을 이용해 둘 다 가능하게 할 수 있다
+	//RequestMapping을 간단하게 쓸 수 있게 해주는 것이 @GetMapping, @PostMapping
+	@RequestMapping("/register/add") //신규회원 가입 화면은 GET으로 한다 
+	@GetMapping("/register/add")
+	public String register() {
+		return "registerForm"; //URL맵핑의 반환을 WEB-INF/views/registerForm.jsp로 한다
+							   //add로 놓고 registerForm으로 반환하면 본인 폼페이지로 이동한다
+	}
+	
+	//@RequestMapping(value="/register/save", method=RequestMethod.POST) -- POST방식으로만 회원가입 가능 방식
+	@PostMapping("/register/save") //PostMapping은 스프링 4.3부터 가능해 업데이트 해야한다
+	public String save() {
+		return"registerInfo";
+	}
+}
