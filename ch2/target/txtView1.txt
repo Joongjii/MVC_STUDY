@@ -1,2 +1,0 @@
-[txtView1.txt]
-id=${id}, pwd=${pwd}

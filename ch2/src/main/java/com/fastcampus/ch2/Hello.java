@@ -4,18 +4,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
-//°´Ã¼ »ý¼ºÀ» ÇØ¾ßÇÏ´Âµ¥ ¾î¶»°Ô ÀÎ½ºÅÏ½º¸Þ¼­µåÀÎ mainÀ¸·Î ½ÇÇàÀÌ °¡´ÉÇÒ±î?
-//ÀÌÀ¯´Â ÅèÄ¹ ³»ºÎ¿¡¼­ °´Ã¼¸¦ »ý¼ºÇÑ ÈÄ ¸Þ¼­µå¸¦ È£ÃâÇÏ±â ¶§¹®ÀÌ´Ù
-//±×·¯¸é staticµµ °¡´ÉÇÑµ¥ ¿Ö?? ÀÎ½ºÅÏ½º¸Þ¼­µå·Î ½ÇÇàÀ» ¼±È£ÇÒ±î?
-//¿Ö³Ä¸é ÀÎ½ºÅÏ½º¸Þ¼­µå´Â iv¿Í cv¸¦ ¸ðµÎ »ç¿ë °¡´ÉÇÏ´Ù
-//¶ÇÇÑ publicÀÌ ¾Æ´Ñ privateµµ »ç¿ëÀÌ °¡´ÉÇÏ´Ù
-//¿Ö?? RequestMappingÀº ¿ÜºÎ¿¡¼­ È£Ãâ °¡´ÉÇÏ°Ú´Ù´Â ÀÇ¹ÌÀÌ±â¿¡ Á¢±ÙÁ¦¾îÀÚ´Â »ó°ü¾ø´Ù
-//´Ü ¿ÜºÎ(Å¬·¡½º)¿¡¼­ mainÇÔ¼ö¸¦ È£ÃâÇÏ´Â °ÍÀº ºÒ°¡´ÉÇÏ´Ù
-//Reflection API¸¦ »ç¿ë - Å¬·¡½º Á¤º¸¸¦ ¾ò°í ´Ù·ê ¼ö ÀÖ´Â °­·ÂÇÑ ±â´É Á¦°ø
-//java.lang.reflectÆÐÅ°Áö¸¦ Á¦°ø
+//ê°ì²´ ìƒì„±ì„ í•´ì•¼í•˜ëŠ”ë° ì–´ë–»ê²Œ ì¸ìŠ¤í„´ìŠ¤ë©”ì„œë“œì¸ mainìœ¼ë¡œ ì‹¤í–‰ì´ ê°€ëŠ¥í• ê¹Œ?
+//ì´ìœ ëŠ” í†°ìº£ ë‚´ë¶€ì—ì„œ ê°ì²´ë¥¼ ìƒì„±í•œ í›„ ë©”ì„œë“œë¥¼ í˜¸ì¶œí•˜ê¸° ë•Œë¬¸ì´ë‹¤
+//ê·¸ëŸ¬ë©´ staticë„ ê°€ëŠ¥í•œë° ì™œ?? ì¸ìŠ¤í„´ìŠ¤ë©”ì„œë“œë¡œ ì‹¤í–‰ì„ ì„ í˜¸í• ê¹Œ?
+//ì™œëƒë©´ ì¸ìŠ¤í„´ìŠ¤ë©”ì„œë“œëŠ” ivì™€ cvë¥¼ ëª¨ë‘ ì‚¬ìš© ê°€ëŠ¥í•˜ë‹¤
+//ë˜í•œ publicì´ ì•„ë‹Œ privateë„ ì‚¬ìš©ì´ ê°€ëŠ¥í•˜ë‹¤
+//ì™œ?? RequestMappingì€ ì™¸ë¶€ì—ì„œ í˜¸ì¶œ ê°€ëŠ¥í•˜ê² ë‹¤ëŠ” ì˜ë¯¸ì´ê¸°ì— ì ‘ê·¼ì œì–´ìžëŠ” ìƒê´€ì—†ë‹¤
+//ë‹¨ ì™¸ë¶€(í´ëž˜ìŠ¤)ì—ì„œ mainí•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ëŠ” ê²ƒì€ ë¶ˆê°€ëŠ¥í•˜ë‹¤
+//Reflection APIë¥¼ ì‚¬ìš© - í´ëž˜ìŠ¤ ì •ë³´ë¥¼ ì–»ê³  ë‹¤ë£° ìˆ˜ ìžˆëŠ” ê°•ë ¥í•œ ê¸°ëŠ¥ ì œê³µ
+//java.lang.reflectíŒ¨í‚¤ì§€ë¥¼ ì œê³µ
 
 
-//1. ¿ø°Ý È£Ãâ °¡´ÉÇÑ ÇÁ·Î±×·¥À¸·Î µî·Ï
+//1. ì›ê²© í˜¸ì¶œ ê°€ëŠ¥í•œ í”„ë¡œê·¸ëž¨ìœ¼ë¡œ ë“±ë¡
 @Controller
 public class Hello {
 	int iv = 10;
@@ -23,8 +23,8 @@ public class Hello {
 	
 	
 	@RequestMapping("/helloSpring")
-	// 2. URL°ú ¸Þ¼­µå¸¦ ¿¬°á
-	private void main() { //ÀÎ½ºÅÏ½º ¸Þ¼­µå - iv, cv¸¦ µÑ ´Ù »ç¿ë°¡´É
+	// 2. URLê³¼ ë©”ì„œë“œë¥¼ ì—°ê²°
+	private void main() { //ì¸ìŠ¤í„´ìŠ¤ ë©”ì„œë“œ - iv, cvë¥¼ ë‘˜ ë‹¤ ì‚¬ìš©ê°€ëŠ¥
 		System.out.println("Hello - private");
 		System.out.println(cv); //OK
 		System.out.println(iv); //OK

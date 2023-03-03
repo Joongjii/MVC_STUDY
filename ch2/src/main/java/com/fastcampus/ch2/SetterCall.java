@@ -18,42 +18,42 @@ public class SetterCall {
 		map.put("day", "1");
 		
 		Class<?> type = Class.forName("com.fastcampus.ch2.MyDate");
-		// Áö³×¸¯ Å¸ÀÔ : <?> -- ¸ğµç Å¸ÀÔ °¡´É
-		// MyDateÀÎ½ºÅÏ½º¸¦ »ı¼ºÇÏ°í, mapÀÇ °ªÀ¸·Î ÃÊ±âÈ­ÇÑ´Ù. 
+		// ì§€ë„¤ë¦­ íƒ€ì… : <?> -- ëª¨ë“  íƒ€ì… ê°€ëŠ¥
+		// MyDateì¸ìŠ¤í„´ìŠ¤ë¥¼ ìƒì„±í•˜ê³ , mapì˜ ê°’ìœ¼ë¡œ ì´ˆê¸°í™”í•œë‹¤. 
 		Object obj = dataBind(map, type);
 		System.out.println("obj="+obj); // obj=[year=2021, month=10, day=1]
 	} // main
 
 	private static Object dataBind(Map<String, String> map, Class<?> clazz) throws Exception {
-		// 1. MyDateÀÎ½ºÅÏ½º »ı¼º
-//		Object obj = clazz.newInstance(); // deprecated method -- ´İÈù ¸Ş¼­µå
+		// 1. MyDateì¸ìŠ¤í„´ìŠ¤ ìƒì„±
+//		Object obj = clazz.newInstance(); // deprecated method -- ë‹«íŒ ë©”ì„œë“œ
 		Object obj = clazz.getDeclaredConstructor().newInstance(new Object[0]);
-		//getDeclaredConstructor(parameterTypes) : ¸ğµç »ı¼ºÀÚ¿¡ Á¢±Ù 
-		//(´ÜÀÏ ¸Å°Ô º¯¼ö ÇÊ¿ä). ´Ü, setAccessible(true) ÇÊ¿ä
+		//getDeclaredConstructor(parameterTypes) : ëª¨ë“  ìƒì„±ìì— ì ‘ê·¼ 
+		//(ë‹¨ì¼ ë§¤ê²Œ ë³€ìˆ˜ í•„ìš”). ë‹¨, setAccessible(true) í•„ìš”
 		
-		// 2. MyDateÀÎ½ºÅÏ½ºÀÇ setter¸¦ È£ÃâÇØ¼­, mapÀÇ °ªÀ¸·Î MyDate¸¦ ÃÊ±âÈ­
-		// 	 2-1. MyDateÀÇ ¸ğµç iv¸¦ µ¹¸é¼­ map¿¡ ÀÖ´ÂÁö Ã£´Â´Ù.
-		// 	 2-2. Ã£À¸¸é, Ã£Àº °ªÀ» setter·Î °´Ã¼¿¡ ÀúÀåÇÑ´Ù.
+		// 2. MyDateì¸ìŠ¤í„´ìŠ¤ì˜ setterë¥¼ í˜¸ì¶œí•´ì„œ, mapì˜ ê°’ìœ¼ë¡œ MyDateë¥¼ ì´ˆê¸°í™”
+		// 	 2-1. MyDateì˜ ëª¨ë“  ivë¥¼ ëŒë©´ì„œ mapì— ìˆëŠ”ì§€ ì°¾ëŠ”ë‹¤.
+		// 	 2-2. ì°¾ìœ¼ë©´, ì°¾ì€ ê°’ì„ setterë¡œ ê°ì²´ì— ì €ì¥í•œë‹¤.
 		
 		Field[] ivArr = clazz.getDeclaredFields();
-//		  Java ReflectionÀ» »ç¿ëÇÏ¸é Æ¯Á¤ ÀÎ½ºÅÏ½ºÀÇ ¸â¹öº¯¼ö, ¸Ş¼Òµå µî¿¡ Á¢±ÙÇÒ ¼ö ÀÖ´Ù.
-//		  ¸â¹öº¯¼ö¿¡ Á¢±ÙÇÒ ¼ö ÀÖ´Â ¹æ¹ıÀ¸·Î getFields ¸Ş¼Òµå¸¦ »ç¿ëÇÏ´Âµ¥, ÀÌ´Â public ¸â¹öº¯¼ö¿¡¸¸ Á¢±ÙÀÌ °¡´ÉÇÏ´Ù.
-//		  privateÀ» Æ÷ÇÔÇÑ ¸ğµç ¸â¹öº¯¼ö¿¡ Á¢±ÙÇÏ±â À§ÇØ¼± getDeclaredFields ¸Ş¼Òµå¸¦ »ç¿ëÇÑ´Ù.
+//		  Java Reflectionì„ ì‚¬ìš©í•˜ë©´ íŠ¹ì • ì¸ìŠ¤í„´ìŠ¤ì˜ ë©¤ë²„ë³€ìˆ˜, ë©”ì†Œë“œ ë“±ì— ì ‘ê·¼í•  ìˆ˜ ìˆë‹¤.
+//		  ë©¤ë²„ë³€ìˆ˜ì— ì ‘ê·¼í•  ìˆ˜ ìˆëŠ” ë°©ë²•ìœ¼ë¡œ getFields ë©”ì†Œë“œë¥¼ ì‚¬ìš©í•˜ëŠ”ë°, ì´ëŠ” public ë©¤ë²„ë³€ìˆ˜ì—ë§Œ ì ‘ê·¼ì´ ê°€ëŠ¥í•˜ë‹¤.
+//		  privateì„ í¬í•¨í•œ ëª¨ë“  ë©¤ë²„ë³€ìˆ˜ì— ì ‘ê·¼í•˜ê¸° ìœ„í•´ì„  getDeclaredFields ë©”ì†Œë“œë¥¼ ì‚¬ìš©í•œë‹¤.
 		
 		for(int i=0; i<ivArr.length; i++) {
 			String name = ivArr[i].getName();
 			Class<?>  type = ivArr[i].getType();
 			
-			// map¿¡ °°Àº ÀÌ¸§ÀÇ key°¡ ÀÖÀ¸¸é °¡Á®¿Í¼­ setterÈ£Ãâ 
-			Object value = map.get(name); // ¸øÃ£À¸¸é valueÀÇ °ªÀº null
+			// mapì— ê°™ì€ ì´ë¦„ì˜ keyê°€ ìˆìœ¼ë©´ ê°€ì ¸ì™€ì„œ setterí˜¸ì¶œ 
+			Object value = map.get(name); // ëª»ì°¾ìœ¼ë©´ valueì˜ ê°’ì€ null
 			Method method = null;
 			
-			try {   // map¿¡ iv¿Í ÀÏÄ¡ÇÏ´Â Å°°¡ ÀÖÀ» ¶§¸¸, setter¸¦ È£Ãâ
+			try {   // mapì— ivì™€ ì¼ì¹˜í•˜ëŠ” í‚¤ê°€ ìˆì„ ë•Œë§Œ, setterë¥¼ í˜¸ì¶œ
 				if(value==null) continue;
 				
-				method = clazz.getDeclaredMethod(getSetterName(name), type); // setterÀÇ Á¤º¸ ¾ò±â	
+				method = clazz.getDeclaredMethod(getSetterName(name), type); // setterì˜ ì •ë³´ ì–»ê¸°	
 				System.out.println("method="+method);
-				method.invoke(obj, convertTo(value, type)); // objÀÇ setter¸¦ È£Ãâ
+				method.invoke(obj, convertTo(value, type)); // objì˜ setterë¥¼ í˜¸ì¶œ
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -65,18 +65,18 @@ public class SetterCall {
 	}
 
 	private static Object convertTo(Object value, Class<?> type) {
-		// valueÀÇ Å¸ÀÔ°ú typeÀÇ Å¸ÀÔÀÌ °°À¸¸é ±×´ë·Î ¹İÈ¯
+		// valueì˜ íƒ€ì…ê³¼ typeì˜ íƒ€ì…ì´ ê°™ìœ¼ë©´ ê·¸ëŒ€ë¡œ ë°˜í™˜
 		if(value==null || type==null || type.isInstance(value))
 			return value;
 		
-		// valueÀÇ Å¸ÀÔ°ú typeÀÌ ´Ù¸£¸é, º¯È¯ÇØ¼­ ¹İÈ¯
+		// valueì˜ íƒ€ì…ê³¼ typeì´ ë‹¤ë¥´ë©´, ë³€í™˜í•´ì„œ ë°˜í™˜
 		if(String.class.isInstance(value) && type==int.class) // String -> int
 			return Integer.valueOf(""+value);
 
 		return value;
 	}
 
-	// ivÀÇ ÀÌ¸§À¸·Î setterÀÇ ÀÌ¸§À» ¸¸µé¾î¼­ ¹İÈ¯ÇÏ´Â ¸Ş¼­µå("day" -> "setDay")
+	// ivì˜ ì´ë¦„ìœ¼ë¡œ setterì˜ ì´ë¦„ì„ ë§Œë“¤ì–´ì„œ ë°˜í™˜í•˜ëŠ” ë©”ì„œë“œ("day" -> "setDay")
 	private static String getSetterName(String name) {
 //		return "set"+name.substring(0,1).toUpperCase()+name.substring(1);
 		return "set" + StringUtils.capitalize(name); // org.springframework.util.StringUtils
@@ -86,7 +86,7 @@ public class SetterCall {
 	
 	
 /*
-[½ÇÇà°á°ú]
+[ì‹¤í–‰ê²°ê³¼]
 method=public void com.fastcampus.ch2.MyDate.setYear(int)
 method=public void com.fastcampus.ch2.MyDate.setMonth(int)
 method=public void com.fastcampus.ch2.MyDate.setDay(int)

@@ -23,18 +23,18 @@ public class YoilTellerMVC2 { //http:localhost/ch2/getYoilMVC?year=2023&month=2&
 			@RequestParam(required=true) int month, 
 			@RequestParam(required=true) int day, Model model) throws IOException {
 //	public void main(int year, int month, int day, Model model) throws IOException {
-		//¸Å°³ º¯¼ö¿Í ¸ğµ¨ ¼±¾ğ
+		//ë§¤ê°œ ë³€ìˆ˜ì™€ ëª¨ë¸ ì„ ì–¸
 		
 //			ModelAndView mv = new ModelAndVie w();
 		
-			// 1. À¯È¿¼º °Ë»ç
+			// 1. ìœ íš¨ì„± ê²€ì‚¬
 			if(!isValid(year,month,day))
 				return "yoilError";
 			
-			// 2.¿äÀÏ °è»ê
+			// 2.ìš”ì¼ ê³„ì‚°
 			char yoil = getYoil(year, month, day);
 		
-			// 3.°è»êÇÑ °á°ú¸¦ ¸ğµ¨¿¡ ÀúÀå
+			// 3.ê³„ì‚°í•œ ê²°ê³¼ë¥¼ ëª¨ë¸ì— ì €ì¥
 			model.addAttribute("year",year);
 			model.addAttribute("month",month);
 			model.addAttribute("day",day);
@@ -42,7 +42,7 @@ public class YoilTellerMVC2 { //http:localhost/ch2/getYoilMVC?year=2023&month=2&
 			
 			
 		return "yoil"; // /WEB-INF/views/yoil.jsp 
-		//¹İÈ¯Å¸ÀÔÀ» void·Î ÇÏ°ÔµÇ¸é ¸ÊÇÎµÈ ÁÖ¼ÒÀÇ .jsp·Î View°¡ È£ÃâµÈ´Ù
+		//ë°˜í™˜íƒ€ì…ì„ voidë¡œ í•˜ê²Œë˜ë©´ ë§µí•‘ëœ ì£¼ì†Œì˜ .jspë¡œ Viewê°€ í˜¸ì¶œëœë‹¤
 		
 		
 	}
@@ -54,11 +54,11 @@ public class YoilTellerMVC2 { //http:localhost/ch2/getYoilMVC?year=2023&month=2&
 	
 	private char getYoil(int year, int month, int day) {
 		Calendar cal = Calendar.getInstance();
-		cal.set(year, month - 1, day); //¿ùÀº -1 ÇØÁà¾ß ÇÑ´Ù
+		cal.set(year, month - 1, day); //ì›”ì€ -1 í•´ì¤˜ì•¼ í•œë‹¤
 		System.out.println(cal);
 	
-	int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK); //calendar°¡ °¡¸£Å°´Â(ÀÇ¹ÌÇÏ´Â) Æ¯Á¤ ³¯Â¥°¡ ¹«½¼ ¿äÀÏÀÎÁö ¾Ë±â À§ÇØ ¾²ÀÎ´Ù.
-	return " ÀÏ¿ùÈ­¼ö¸ñ±İÅä".charAt(dayOfWeek);
+	int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK); //calendarê°€ ê°€ë¥´í‚¤ëŠ”(ì˜ë¯¸í•˜ëŠ”) íŠ¹ì • ë‚ ì§œê°€ ë¬´ìŠ¨ ìš”ì¼ì¸ì§€ ì•Œê¸° ìœ„í•´ ì“°ì¸ë‹¤.
+	return " ì¼ì›”í™”ìˆ˜ëª©ê¸ˆí† ".charAt(dayOfWeek);
 }
 
 }

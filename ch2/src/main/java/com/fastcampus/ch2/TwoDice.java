@@ -18,17 +18,17 @@ public class TwoDice {
 	  response.setContentType("text/html");
 	  response.setCharacterEncoding("utf-8");
 	  
-	  //PrintWriter ¸¸µé¾î¼­ html Çü½ÄÀ¸·Î Ãâ·ÂÇÏ±â
+	  //PrintWriter ë§Œë“¤ì–´ì„œ html í˜•ì‹ìœ¼ë¡œ ì¶œë ¥í•˜ê¸°
 	  PrintWriter out = response.getWriter();
-	  // Á¤Àû¸®¼Ò½º(.css .html .js)ÀÎ ÀÌ¹ÌÁö ÆÄÀÏÀ» ÀÌ¿ëÇÏ¿©
-	  // ½ÇÇàÇÒ¶§ ¸¶´Ù °á°ú°¡ º¯ÇÑ´Ù : µ¿Àû¸®¼Ò½º (¼­¹ö°¡ Á¦°øÇÏ´Â ¸®¼Ò½º : ½ºÆ®¸®¹Ö, ÇÁ·Î±×·¥)
+	  // ì •ì ë¦¬ì†ŒìŠ¤(.css .html .js)ì¸ ì´ë¯¸ì§€ íŒŒì¼ì„ ì´ìš©í•˜ì—¬
+	  // ì‹¤í–‰í• ë•Œ ë§ˆë‹¤ ê²°ê³¼ê°€ ë³€í•œë‹¤ : ë™ì ë¦¬ì†ŒìŠ¤ (ì„œë²„ê°€ ì œê³µí•˜ëŠ” ë¦¬ì†ŒìŠ¤ : ìŠ¤íŠ¸ë¦¬ë°, í”„ë¡œê·¸ë¨)
 	  out.println("<html>");
 	  out.println("<head>");
 	  out.println("</head>");
 	  out.println("<body>");
 	  out.println("<img src='resources/img/dice"+ idx1 +".jpg'>");
 	  out.println("<img src='resources/img/dice"+ idx2 +".jpg'>"); 	  
-//	  out.println("<img src='/img/dice1.jpg'>"); -- °æ·Î¸¦ Á¤È®ÇÏ°Ô ÀÔ·ÂÇØ¾ßÇÑ´Ù
+//	  out.println("<img src='/img/dice1.jpg'>"); -- ê²½ë¡œë¥¼ ì •í™•í•˜ê²Œ ì…ë ¥í•´ì•¼í•œë‹¤
 	  out.println("</body>");
 	  out.println("</html>");
 	  

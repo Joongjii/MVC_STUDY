@@ -15,7 +15,7 @@ public class YoilTeller {
 	@RequestMapping("/getYoil")
 	public void main(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
-		//1. ÀÔ·Â °ª
+		//1. ì…ë ¥ ê°’
 		String year = request.getParameter("year");
 		String month = request.getParameter("month");
 		String day = request.getParameter("day");
@@ -24,26 +24,26 @@ public class YoilTeller {
 		int m = Integer.parseInt(month);
 		int d = Integer.parseInt(day);
 		
-		// 2. ÀÛ¾÷
+		// 2. ì‘ì—…
 		Calendar cal = Calendar.getInstance();
-		cal.set(y, m - 1, d); //¿ùÀº -1 ÇØÁà¾ß ÇÑ´Ù
+		cal.set(y, m - 1, d); //ì›”ì€ -1 í•´ì¤˜ì•¼ í•œë‹¤
 		System.out.println(cal);
 		
-		int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK); //calendar°¡ °¡¸£Å°´Â(ÀÇ¹ÌÇÏ´Â) Æ¯Á¤ ³¯Â¥°¡ ¹«½¼ ¿äÀÏÀÎÁö ¾Ë±â À§ÇØ ¾²ÀÎ´Ù.
-		char yoil = " ÀÏ¿ùÈ­¼ö¸ñ±İÅä".charAt(dayOfWeek);
+		int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK); //calendarê°€ ê°€ë¥´í‚¤ëŠ”(ì˜ë¯¸í•˜ëŠ”) íŠ¹ì • ë‚ ì§œê°€ ë¬´ìŠ¨ ìš”ì¼ì¸ì§€ ì•Œê¸° ìœ„í•´ ì“°ì¸ë‹¤.
+		char yoil = " ì¼ì›”í™”ìˆ˜ëª©ê¸ˆí† ".charAt(dayOfWeek);
 		
 		
-		//3. Ãâ·Â
+		//3. ì¶œë ¥
 		response.setContentType("text/html");
 		response.setCharacterEncoding("utf-8"); 
-		PrintWriter printOut = response.getWriter(); //response °´Ã¼¿¡¼­ ºê¶ó¿ìÀú·ÎÀÇ Ãâ·Â ½ºÆ®¸²À» ¾ò´Â´Ù.
+		PrintWriter printOut = response.getWriter(); //response ê°ì²´ì—ì„œ ë¸Œë¼ìš°ì €ë¡œì˜ ì¶œë ¥ ìŠ¤íŠ¸ë¦¼ì„ ì–»ëŠ”ë‹¤.
 		
 			printOut.println("<html>");
 			printOut.println("<head>");
 			printOut.println("</head>");
 			printOut.println("<body>");
-			printOut.println(year + "³â " + month + "¿ù " + day + "³¯Àº ");
-			printOut.println(yoil + "¿äÀÏÀÌ´Ù~ ");
+			printOut.println(year + "ë…„ " + month + "ì›” " + day + "ë‚ ì€ ");
+			printOut.println(yoil + "ìš”ì¼ì´ë‹¤~ ");
 			printOut.println("</body>");
 			printOut.println("</html>");
 		

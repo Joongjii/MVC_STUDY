@@ -12,45 +12,45 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class RegisterController {
 	//@RequestMapping(value="/register/add", method={RequestMehtod.GET, RequestMethod.POST})
-	//¹è¿­À» ÀÌ¿ëÇØ µÑ ´Ù °¡´ÉÇÏ°Ô ÇÒ ¼ö ÀÖ´Ù
-	//RequestMappingÀ» °£´ÜÇÏ°Ô ¾µ ¼ö ÀÖ°Ô ÇØÁÖ´Â °ÍÀÌ @GetMapping, @PostMapping
+	//ë°°ì—´ì„ ì´ìš©í•´ ë‘˜ ë‹¤ ê°€ëŠ¥í•˜ê²Œ í•  ìˆ˜ ìˆë‹¤
+	//RequestMappingì„ ê°„ë‹¨í•˜ê²Œ ì“¸ ìˆ˜ ìˆê²Œ í•´ì£¼ëŠ” ê²ƒì´ @GetMapping, @PostMapping
 
 	
-	//servlet-context.xml¿¡ ¾Æ·¡ ÁÙÀ» ViewController·Î µî·ÏÇÏ¸é ½Å±ÔÈ¸¿ø°¡ÀÔ È­¸é¿¡ ´ëÇÑ ³»¿ëÀº ÁÖ¼®ÀÌ °¡´ÉÇÏ´Ù
+	//servlet-context.xmlì— ì•„ë˜ ì¤„ì„ ViewControllerë¡œ ë“±ë¡í•˜ë©´ ì‹ ê·œíšŒì›ê°€ì… í™”ë©´ì— ëŒ€í•œ ë‚´ìš©ì€ ì£¼ì„ì´ ê°€ëŠ¥í•˜ë‹¤
 	//<view-controller path="register/add" view-name="registerForm"></view-controller>
 	
 	
-//	@RequestMapping("/register/add") //½Å±ÔÈ¸¿ø °¡ÀÔ È­¸éÀº GETÀ¸·Î ÇÑ´Ù 
+//	@RequestMapping("/register/add") //ì‹ ê·œíšŒì› ê°€ì… í™”ë©´ì€ GETìœ¼ë¡œ í•œë‹¤ 
 //	@GetMapping("/register/add")
 //	public String register() {
-//		return "registerForm"; //URL¸ÊÇÎÀÇ ¹İÈ¯À» WEB-INF/views/registerForm.jsp·Î ÇÑ´Ù
-//							   //add·Î ³õ°í registerFormÀ¸·Î ¹İÈ¯ÇÏ¸é º»ÀÎ ÆûÆäÀÌÁö·Î ÀÌµ¿ÇÑ´Ù
+//		return "registerForm"; //URLë§µí•‘ì˜ ë°˜í™˜ì„ WEB-INF/views/registerForm.jspë¡œ í•œë‹¤
+//							   //addë¡œ ë†“ê³  registerFormìœ¼ë¡œ ë°˜í™˜í•˜ë©´ ë³¸ì¸ í¼í˜ì´ì§€ë¡œ ì´ë™í•œë‹¤
 //	}
 	
-	//@RequestMapping(value="/register/save", method=RequestMethod.POST) -- POST¹æ½ÄÀ¸·Î¸¸ È¸¿ø°¡ÀÔ °¡´É ¹æ½Ä
-	@PostMapping("/register/save") //PostMappingÀº ½ºÇÁ¸µ 4.3ºÎÅÍ °¡´ÉÇØ ¾÷µ¥ÀÌÆ® ÇØ¾ßÇÑ´Ù
+	//@RequestMapping(value="/register/save", method=RequestMethod.POST) -- POSTë°©ì‹ìœ¼ë¡œë§Œ íšŒì›ê°€ì… ê°€ëŠ¥ ë°©ì‹
+	@PostMapping("/register/save") //PostMappingì€ ìŠ¤í”„ë§ 4.3ë¶€í„° ê°€ëŠ¥í•´ ì—…ë°ì´íŠ¸ í•´ì•¼í•œë‹¤
 	public String save(User user,Model m) throws Exception {
-		// id, pwd, nameµîµî User·Î ¹­¾î ÇÏ³ª·Î
-		//1. À¯È¿¼º °Ë»ç
+		// id, pwd, nameë“±ë“± Userë¡œ ë¬¶ì–´ í•˜ë‚˜ë¡œ
+		//1. ìœ íš¨ì„± ê²€ì‚¬
 		
 		if(!isValid(user)) {
 			
-			String msg =URLEncoder.encode("id¸¦ Àß¸øÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.", "utf-8");
-			// URL Àü¼ÛÇÒ¶§¶û È­¸é Ãâ·ÂÇÒ¶§ ÀÎÄÚµù±úÁö¹Ç·Î ÀÎÄÚ´õ¸¦ Ãß°¡ÇØÁØ´Ù
-			//registerForm¿¡´Â µğÄÚ´õ¸¦ Ãß°¡ÇÑ´Ù
+			String msg =URLEncoder.encode("idë¥¼ ì˜ëª»ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.", "utf-8");
+			// URL ì „ì†¡í• ë•Œë‘ í™”ë©´ ì¶œë ¥í• ë•Œ ì¸ì½”ë”©ê¹¨ì§€ë¯€ë¡œ ì¸ì½”ë”ë¥¼ ì¶”ê°€í•´ì¤€ë‹¤
+			//registerFormì—ëŠ” ë””ì½”ë”ë¥¼ ì¶”ê°€í•œë‹¤
 			
 			m.addAttribute("msg",msg);
 			return "redirect:/register/add";
-			//redirect´Â Àç¿äÃ» modelÀ» Àç¿äÃ»¿¡ ¾µ ¼ö °¡ ¾ø´Ù
-			//¾Æ·¡ ÇÑ ÁÙ°ú µ¿ÀÏÇÏ´Ù ³Ñ°ÜÁà¾ßµÉ °ªÀÌ msgÃ³·³ ÇÏ³ª¶ó¸é ¾Æ·¡ ÄÚµå°¡ ½±Áö¸¸
-			//¿©·¯°³¶ó¸é model¿¡ ´ã¾Æ¼­ ³Ñ°ÜÁÖ´Â°ÍÀÌ ÁÁ´Ù
-//			return "redirect:/register/add?msg=" + msg; //URLÀçÀÛ¼º(rewriting)
+			//redirectëŠ” ì¬ìš”ì²­ modelì„ ì¬ìš”ì²­ì— ì“¸ ìˆ˜ ê°€ ì—†ë‹¤
+			//ì•„ë˜ í•œ ì¤„ê³¼ ë™ì¼í•˜ë‹¤ ë„˜ê²¨ì¤˜ì•¼ë  ê°’ì´ msgì²˜ëŸ¼ í•˜ë‚˜ë¼ë©´ ì•„ë˜ ì½”ë“œê°€ ì‰½ì§€ë§Œ
+			//ì—¬ëŸ¬ê°œë¼ë©´ modelì— ë‹´ì•„ì„œ ë„˜ê²¨ì£¼ëŠ”ê²ƒì´ ì¢‹ë‹¤
+//			return "redirect:/register/add?msg=" + msg; //URLì¬ì‘ì„±(rewriting)
 			}
 		
 		
 		
 		
-		//2. DB¿¡ ½Å±ÔÈ¸¿ø Á¤º¸¸¦ ÀúÀå
+		//2. DBì— ì‹ ê·œíšŒì› ì •ë³´ë¥¼ ì €ì¥
 		return"registerInfo";
 	}
 

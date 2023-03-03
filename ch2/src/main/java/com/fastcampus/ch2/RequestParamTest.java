@@ -24,27 +24,27 @@ public class RequestParamTest {
 //		http://localhost/ch2/requestParam?year=   ---->> year=""
 //		http://localhost/ch2/requestParam?year    ---->> year=""
 		System.out.printf("[%s]year=[%s]%n", new Date(), year);
-		//Filter°¡ µ¹¾Æ°¡¸ç ÈÄÃ³¸®¸¦ syso·Î Âï¾î³½´Ù
+		//Filterê°€ ëŒì•„ê°€ë©° í›„ì²˜ë¦¬ë¥¼ sysoë¡œ ì°ì–´ë‚¸ë‹¤
 		//new Date() --> Thu Mar 02 20:08:02 KST
 		return "yoil";
 	}
 
 	@RequestMapping("/requestParam2")
-//	public String main2(@RequestParam(name="year", required=false) String year) {   // ¾Æ·¡¿Í µ¿ÀÏ 
-		//RequestParam ¿äÃ»ÀÇ ÆÄ¶ó¹ÌÅÍ¸¦ ¿¬°áÇÒ ¸Å°³º¯¼ö¿¡ ºÙÀÌ´Â ¾Ö³ÊÅ×ÀÌ¼Ç
-		//year´Â ÆÄ¶ó¹ÌÅÍ ÀÌ¸§ - »ı·«°¡´É required=false -> ?year=2023°ú °°ÀÌ URL¿¡ °ªÀ» ÁÖ´Â °Í
+//	public String main2(@RequestParam(name="year", required=false) String year) {   // ì•„ë˜ì™€ ë™ì¼ 
+		//RequestParam ìš”ì²­ì˜ íŒŒë¼ë¯¸í„°ë¥¼ ì—°ê²°í•  ë§¤ê°œë³€ìˆ˜ì— ë¶™ì´ëŠ” ì• ë„ˆí…Œì´ì…˜
+		//yearëŠ” íŒŒë¼ë¯¸í„° ì´ë¦„ - ìƒëµê°€ëŠ¥ required=false -> ?year=2023ê³¼ ê°™ì´ URLì— ê°’ì„ ì£¼ëŠ” ê²ƒ
 	public String main2(String year) {   
 //		http://localhost/ch2/requestParam2         ---->> year=null
-//		http://localhost/ch2/requestParam2?year    ---->> year="" -- ºó ¹®ÀÚ¿­       (ºó ¹®ÀÚ¿­ != null)
-		System.out.printf("[%s]year=[%s]%n", new Date(), year);	 //%s ¹®ÀÚÇü %n ÁÙ¹Ù²Ş
-		//Ã¹ ¹øÂ° [%s]--new Date()  µÎ¹øÂ° [%s]--year
+//		http://localhost/ch2/requestParam2?year    ---->> year="" -- ë¹ˆ ë¬¸ìì—´       (ë¹ˆ ë¬¸ìì—´ != null)
+		System.out.printf("[%s]year=[%s]%n", new Date(), year);	 //%s ë¬¸ìí˜• %n ì¤„ë°”ê¿ˆ
+		//ì²« ë²ˆì§¸ [%s]--new Date()  ë‘ë²ˆì§¸ [%s]--year
 		return "yoil";
 	}
 
 	@RequestMapping("/requestParam3")
-//		public String main3(@RequestParam(name="year", required=true) String year) {   // ¾Æ·¡¿Í µ¿ÀÏ 
+//		public String main3(@RequestParam(name="year", required=true) String year) {   // ì•„ë˜ì™€ ë™ì¼ 
 		public String main3(@RequestParam String year) {   
-//		http://localhost/ch2/requestParam3         ---->> year=null   400 Bad Request. required=true¶ó¼­ 
+//		http://localhost/ch2/requestParam3         ---->> year=null   400 Bad Request. required=trueë¼ì„œ 
 //		http://localhost/ch2/requestParam3?year    ---->> year=""
 		System.out.printf("[%s]year=[%s]%n", new Date(), year);
 		return "yoil";	
@@ -85,12 +85,12 @@ public class RequestParamTest {
 	}
 
 	@RequestMapping("/requestParam8") 
-	// "" -> int º¯È¯¹®Á¦¸¦ ÇØ°áÇÏ±â À§ÇØ ¿¹¿ÜÃ³¸®¸¦ ÇØÁØ´Ù catcher ¸Ş¼­µå
+	// "" -> int ë³€í™˜ë¬¸ì œë¥¼ í•´ê²°í•˜ê¸° ìœ„í•´ ì˜ˆì™¸ì²˜ë¦¬ë¥¼ í•´ì¤€ë‹¤ catcher ë©”ì„œë“œ
 	public String main8(@RequestParam(required=false, defaultValue="2021") int year) {   
 	//	http://localhost/ch2/requestParam8        ---->> 500 java.lang.IllegalStateException: Optional int parameter 'year' is present but cannot be translated into a null value due to being declared as a primitive type. Consider declaring it as object wrapper for the corresponding primitive type.
-								//null -> int º¯È¯ÇÒ ¼ö ¾ø±â¿¡ 500 ¿¡·¯
+								//null -> int ë³€í™˜í•  ìˆ˜ ì—†ê¸°ì— 500 ì—ëŸ¬
 	//	http://localhost/ch2/requestParam8?year   ---->> 400 Bad Request, nested exception is java.lang.NumberFormatException: For input string: "" 
-								// ""  -> int º¯È¯ÇÒ ¼ö ¾ø±â¿¡ 400 ¿¡·¯ - °ªÀ» ÁÖ±ä Áá´Âµ¥ Àß¸øÁá±â ¶§¹®¿¡
+								// ""  -> int ë³€í™˜í•  ìˆ˜ ì—†ê¸°ì— 400 ì—ëŸ¬ - ê°’ì„ ì£¼ê¸´ ì¤¬ëŠ”ë° ì˜ëª»ì¤¬ê¸° ë•Œë¬¸ì—
 		System.out.printf("[%s]year=[%s]%n", new Date(), year);
 		return "yoil";
 	}
@@ -99,7 +99,7 @@ public class RequestParamTest {
 	public String main9(@RequestParam(required=true) int year) {   
 	//	http://localhost/ch2/requestParam9        ---->> 400 Bad Request, Required int parameter 'year' is not present
 	//	http://localhost/ch2/requestParam9?year   ---->> 400 Bad Request, nested exception is java.lang.NumberFormatException: For input string: "" 
-								// "" -> int º¯È¯ÀÌ ¾ÈµÇ¹Ç·Î ¿¡·¯ 400¿¡·¯
+								// "" -> int ë³€í™˜ì´ ì•ˆë˜ë¯€ë¡œ ì—ëŸ¬ 400ì—ëŸ¬
 		System.out.printf("[%s]year=[%s]%n", new Date(), year);
 		return "yoil";
 	}
@@ -114,7 +114,7 @@ public class RequestParamTest {
 
 	@RequestMapping("/requestParam11")   
 	public String main11(@RequestParam(required=false, defaultValue="1") int year) {   
-							// ±×·¡¼­ ÇÊ¼ö ÀÔ·ÂÀÌ ¾Æ´Ò¶§´Â ±âº» °ªÀÌ ÀÖ¾î¾ßÇÑ´Ù
+							// ê·¸ë˜ì„œ í•„ìˆ˜ ì…ë ¥ì´ ì•„ë‹ë•ŒëŠ” ê¸°ë³¸ ê°’ì´ ìˆì–´ì•¼í•œë‹¤
 //		http://localhost/ch2/requestParam11        ---->> year=1   
 //		http://localhost/ch2/requestParam11?year   ---->> year=1   
 		System.out.printf("[%s]year=[%s]%n", new Date(), year);

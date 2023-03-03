@@ -9,14 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//Spring¿¡¼­ ¾²´Â @Controller + @RequestMapping ---> @WebServlet
-//@WebServletÀº HttpServletÀ» ´ÜÀÏ »ó¼Ó
-//¸Þ¼­µå ÀÌ¸§Àº service·Î °íÁ¤ÀÌ¸ç ÆÄ¶ó¹ÌÅÍ·Î request¿Í response°¡ Æ÷ÇÔµÇ¾î¾ßÇÑ´Ù
-//ServletÀº ±âº»ÀûÀ¸·Î ½Ì±ÛÅæ -- 1°³ÀÇ ÀÎ½ºÅÏ½º¸¸ »ý¼º
-//Controller¿Í À¯»çÇÏÁö¸¸ Controller°¡ »ó¼Óµµ ¾ø°í ´õ ¹ßÀüµÈ ¸ð½ÀÀÌ´Ù
-//WebServletÀº Å¬·¡½º´ç URL¸ÊÇÎÀÌ µÈ´Ù
-//Controller´Â ¸Þ¼­µå¿Í URL¸ÊÇÎµÈ´Ù --- µû¶ó¼­ @WebServletÀº URL´ç Å¬·¡½º¸¦ »ý¼ºÇØ¾ßÇÏÁö¸¸
-//Controller´Â ¸ÊÇÎÇÒ ¸Þ¼­µå¸¸ Ãß°¡ÀûÀ¸·Î ¸¸µé¾îÁÖ¸é µÈ´Ù
+//Springì—ì„œ ì“°ëŠ” @Controller + @RequestMapping ---> @WebServlet
+//@WebServletì€ HttpServletì„ ë‹¨ì¼ ìƒì†
+//ë©”ì„œë“œ ì´ë¦„ì€ serviceë¡œ ê³ ì •ì´ë©° íŒŒë¼ë¯¸í„°ë¡œ requestì™€ responseê°€ í¬í•¨ë˜ì–´ì•¼í•œë‹¤
+//Servletì€ ê¸°ë³¸ì ìœ¼ë¡œ ì‹±ê¸€í†¤ -- 1ê°œì˜ ì¸ìŠ¤í„´ìŠ¤ë§Œ ìƒì„±
+//Controllerì™€ ìœ ì‚¬í•˜ì§€ë§Œ Controllerê°€ ìƒì†ë„ ì—†ê³  ë” ë°œì „ëœ ëª¨ìŠµì´ë‹¤
+//WebServletì€ í´ëž˜ìŠ¤ë‹¹ URLë§µí•‘ì´ ëœë‹¤
+//ControllerëŠ” ë©”ì„œë“œì™€ URLë§µí•‘ëœë‹¤ --- ë”°ë¼ì„œ @WebServletì€ URLë‹¹ í´ëž˜ìŠ¤ë¥¼ ìƒì„±í•´ì•¼í•˜ì§€ë§Œ
+//ControllerëŠ” ë§µí•‘í•  ë©”ì„œë“œë§Œ ì¶”ê°€ì ìœ¼ë¡œ ë§Œë“¤ì–´ì£¼ë©´ ëœë‹¤
 
 
 @WebServlet("/rollDice2")

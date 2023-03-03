@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-//@ModelAttribute Àû¿ë ´ë»óÀ» ModelÀÇ ¼Ó¼ºÀ¸·Î ÀÚµ¿ Ãß°¡ÇØÁÖ´Â ¿¡³ÊÅ×ÀÌ¼Ç -- K, V·Î ¸ğµ¨¿¡ ÀúÀå
-//¹İÈ¯ Å¸ÀÔ ¶Ç´Â ÄÁÆ®·Ñ·¯ ¸Ş¼­µåÀÇ ¸Å°³º¯¼ö¿¡ Àû¿ë °¡´É
+//@ModelAttribute ì ìš© ëŒ€ìƒì„ Modelì˜ ì†ì„±ìœ¼ë¡œ ìë™ ì¶”ê°€í•´ì£¼ëŠ” ì—ë„ˆí…Œì´ì…˜ -- K, Vë¡œ ëª¨ë¸ì— ì €ì¥
+//ë°˜í™˜ íƒ€ì… ë˜ëŠ” ì»¨íŠ¸ë¡¤ëŸ¬ ë©”ì„œë“œì˜ ë§¤ê°œë³€ìˆ˜ì— ì ìš© ê°€ëŠ¥
 
-//ÂüÁ¶Çü ¸Å°³º¯¼ö¿¡´Â @ModelAttribute¸¦ »ı·« °¡´É
-//¹İ´ë·Î ±âº»Çü°ú String¿¡´Â @RequestParam »ı·« °¡´É
+//ì°¸ì¡°í˜• ë§¤ê°œë³€ìˆ˜ì—ëŠ” @ModelAttributeë¥¼ ìƒëµ ê°€ëŠ¥
+//ë°˜ëŒ€ë¡œ ê¸°ë³¸í˜•ê³¼ Stringì—ëŠ” @RequestParam ìƒëµ ê°€ëŠ¥
 
 
 @Controller
@@ -28,35 +28,35 @@ public class YoilTellerMVC5 { //http:localhost/ch2/getYoilMVC?year=2023&month=2&
 	
 	@RequestMapping("/getYoilMVC5")
 	// public String main(@ModelAttribute("myDate") MyDate date, Model model) throws IOException {
-	// ("myDate") »ı·« °¡´É -- Å¸ÀÔÀÇ Ã¹ ±ÛÀÚ¸¦ ¼Ò¹®ÀÚ·Î ÇÏ¿© K °ª¿¡ ÀúÀå V´Â dateÀÇ ÁÖ¼Ò°ª
-	// ¸Ş¼­µåÀÇ ¸Å°³º¯¼ö¿¡ @¸¦ ºÙÀÎ ÄÉÀÌ½º
+	// ("myDate") ìƒëµ ê°€ëŠ¥ -- íƒ€ì…ì˜ ì²« ê¸€ìë¥¼ ì†Œë¬¸ìë¡œ í•˜ì—¬ K ê°’ì— ì €ì¥ VëŠ” dateì˜ ì£¼ì†Œê°’
+	// ë©”ì„œë“œì˜ ë§¤ê°œë³€ìˆ˜ì— @ë¥¼ ë¶™ì¸ ì¼€ì´ìŠ¤
 	   public String main(@ModelAttribute MyDate date, Model model) throws IOException {	
 
 		
-			// 1. À¯È¿¼º °Ë»ç
+			// 1. ìœ íš¨ì„± ê²€ì‚¬
 			if(!isValid(date))
 				return "yoilError";
 			
-		//  Model Attribute¸¦ ÀÌ¿ëÇÏ¸é ÀÌ ºÎºĞÀº ÇÊ¿ä°¡ ¾ø´Ù
-//			// 2.¿äÀÏ °è»ê
+		//  Model Attributeë¥¼ ì´ìš©í•˜ë©´ ì´ ë¶€ë¶„ì€ í•„ìš”ê°€ ì—†ë‹¤
+//			// 2.ìš”ì¼ ê³„ì‚°
 //			char yoil = getYoil(date);
 //		
-//			// 3.°è»êÇÑ °á°ú¸¦ ¸ğµ¨¿¡ ÀúÀå	
-//			//K¸¦ myDate·Î V¸¦ date·Î ÀúÀå
+//			// 3.ê³„ì‚°í•œ ê²°ê³¼ë¥¼ ëª¨ë¸ì— ì €ì¥	
+//			//Kë¥¼ myDateë¡œ Vë¥¼ dateë¡œ ì €ì¥
 //			model.addAttribute("myDate",date);
 //			model.addAttribute("yoil",yoil);
 			
 			
 		return "yoil"; // /WEB-INF/views/yoil.jsp 
-		//¹İÈ¯Å¸ÀÔÀ» void·Î ÇÏ°ÔµÇ¸é ¸ÊÇÎµÈ ÁÖ¼ÒÀÇ .jsp·Î View°¡ È£ÃâµÈ´Ù
+		//ë°˜í™˜íƒ€ì…ì„ voidë¡œ í•˜ê²Œë˜ë©´ ë§µí•‘ëœ ì£¼ì†Œì˜ .jspë¡œ Viewê°€ í˜¸ì¶œëœë‹¤
 		
 	}
 
 	private boolean isValid(MyDate date) {
 		return isValid(date.getYear(),date.getMonth(),date.getDay());
 	}
-	//¸Ş¼­µåÀÇ ¹İÈ¯ Å¸ÀÔ¿¡ @¸¦ ºÙÀÎ ÄÉÀÌ½º
-	//¹İÈ¯Å¸ÀÔÀÇ È£Ãâ °á°ú¸¦ ¸ğµ¨¿¡ ÀúÀå yoil-Å° '¼ö'¶ó´Â ¿äÀÏÀº-°ª(value)
+	//ë©”ì„œë“œì˜ ë°˜í™˜ íƒ€ì…ì— @ë¥¼ ë¶™ì¸ ì¼€ì´ìŠ¤
+	//ë°˜í™˜íƒ€ì…ì˜ í˜¸ì¶œ ê²°ê³¼ë¥¼ ëª¨ë¸ì— ì €ì¥ yoil-í‚¤ 'ìˆ˜'ë¼ëŠ” ìš”ì¼ì€-ê°’(value)
 	private @ModelAttribute("yoil") char getYoil(MyDate date) {
 		return getYoil(date.getYear(),date.getMonth(),date.getDay());
 	}
@@ -67,11 +67,11 @@ public class YoilTellerMVC5 { //http:localhost/ch2/getYoilMVC?year=2023&month=2&
 	
 	private char getYoil(int year, int month, int day) {
 		Calendar cal = Calendar.getInstance();
-		cal.set(year, month - 1, day); //¿ùÀº -1 ÇØÁà¾ß ÇÑ´Ù
+		cal.set(year, month - 1, day); //ì›”ì€ -1 í•´ì¤˜ì•¼ í•œë‹¤
 		System.out.println(cal);
 	
-	int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK); //calendar°¡ °¡¸£Å°´Â(ÀÇ¹ÌÇÏ´Â) Æ¯Á¤ ³¯Â¥°¡ ¹«½¼ ¿äÀÏÀÎÁö ¾Ë±â À§ÇØ ¾²ÀÎ´Ù.
-	return " ÀÏ¿ùÈ­¼ö¸ñ±İÅä".charAt(dayOfWeek);
+	int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK); //calendarê°€ ê°€ë¥´í‚¤ëŠ”(ì˜ë¯¸í•˜ëŠ”) íŠ¹ì • ë‚ ì§œê°€ ë¬´ìŠ¨ ìš”ì¼ì¸ì§€ ì•Œê¸° ìœ„í•´ ì“°ì¸ë‹¤.
+	return " ì¼ì›”í™”ìˆ˜ëª©ê¸ˆí† ".charAt(dayOfWeek);
 }
 
 }
