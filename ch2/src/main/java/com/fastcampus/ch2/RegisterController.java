@@ -8,10 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class RegisterController {
-	//@RequestMapping(value="/register/add", method={RequestMehtod.GET, RequestMethod.POST})
+	@RequestMapping(value="/register/add", method={RequestMethod.GET, RequestMethod.POST})
 	//배열을 이용해 둘 다 가능하게 할 수 있다
 	//RequestMapping을 간단하게 쓸 수 있게 해주는 것이 @GetMapping, @PostMapping
 
@@ -22,10 +23,10 @@ public class RegisterController {
 	
 //	@RequestMapping("/register/add") //신규회원 가입 화면은 GET으로 한다 
 //	@GetMapping("/register/add")
-//	public String register() {
-//		return "registerForm"; //URL맵핑의 반환을 WEB-INF/views/registerForm.jsp로 한다
+	public String register() {
+		return "/registerForm"; //URL맵핑의 반환을 WEB-INF/views/registerForm.jsp로 한다
 //							   //add로 놓고 registerForm으로 반환하면 본인 폼페이지로 이동한다
-//	}
+	}
 	
 	//@RequestMapping(value="/register/save", method=RequestMethod.POST) -- POST방식으로만 회원가입 가능 방식
 	@PostMapping("/register/save") //PostMapping은 스프링 4.3부터 가능해 업데이트 해야한다
@@ -40,7 +41,11 @@ public class RegisterController {
 			//registerForm에는 디코더를 추가한다
 			
 			m.addAttribute("msg",msg);
-			return "redirect:/register/add";
+			return "forward:/register/add";
+			
+			//redirect와 forward 둘 다 해보면서 F12 결과 확인
+			
+			
 			//redirect는 재요청 model을 재요청에 쓸 수 가 없다
 			//아래 한 줄과 동일하다 넘겨줘야될 값이 msg처럼 하나라면 아래 코드가 쉽지만
 			//여러개라면 model에 담아서 넘겨주는것이 좋다
@@ -51,11 +56,11 @@ public class RegisterController {
 		
 		
 		//2. DB에 신규회원 정보를 저장
-		return"registerInfo";
+		return"/registerInfo";
 	}
 
 	private boolean isValid(User user) {
 	
-		return true;
+		return false;
 	}
 }
