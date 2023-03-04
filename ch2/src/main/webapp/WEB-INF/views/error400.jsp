@@ -1,9 +1,10 @@
 <%-- <%@ page contentType="text/html;charset=utf-8"%> --%>
-<%@ page contentType="text/html;charset=utf-8" isErrorPage="true" %>
+<%@ page contentType="text/html;charset=utf-8" isErrorPage="false" %>
+<!-- isErrorPage="true"면 F12상태코드에 500 에러라고 뜬다 false로 바꿔줘야 한다  -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-	<title>error.jsp</title>
+	<title>error400.jsp</title>
 </head>
 <body>
 <h1>예외가 발생했습니다.</h1>

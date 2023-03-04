@@ -6,12 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-//@ContorllerAdvice
-//모든 컨트롤러에서 발생하는 예외를 처리하게 된다
+//@ContorllerAdvice란?
+//모든 컨트롤러에서 발생하는 예외를 처리하게 된다(전역 예외 처리작성 가능)
 
 //@ControllerAdvice() -- 아래 처럼 지정된 패키지에서 발생한 예외만 처리 가능
-//@ControllerAdvice("com.fastcampus.ch3")
-@ControllerAdvice("com.fastcampus.ch2")
+@ControllerAdvice("com.fastcampus.ch3")
+//@ControllerAdvice("com.fastcampus.ch2")
 public class GlobalCatcher {
 	@ExceptionHandler({NullPointerException.class, FileNotFoundException.class})
 	public String catcher2(Exception ex, Model m) {

@@ -12,7 +12,12 @@
 <h1>name=${user.name}</h1>
 <h1>email=${user.email}</h1>
 <h1>birth=${user.birth}</h1>
+<h1>hobby=${user.hobby}</h1>
 <h1>sns=${user.sns}</h1>
+
+
+
+
 
 <!--param을 user로 바꿔 확인해볼 것  -->
 <%-- <h1>sns=${userValues.sns[0]}</h1>
